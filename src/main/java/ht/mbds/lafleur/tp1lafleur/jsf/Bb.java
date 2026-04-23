@@ -1,6 +1,6 @@
 package ht.mbds.lafleur.tp1lafleur.jsf;
 
-import ht.mbds.lafleur.tp1lafleur.service.Modificateur;
+// import ht.mbds.lafleur.tp1lafleur.service.Modificateur;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.model.SelectItem;
@@ -51,11 +51,29 @@ public class Bb implements Serializable {
      */
     private StringBuilder conversation = new StringBuilder();
 
+
+    private String texteRequeteJson;
+    private String texteReponseJson;
+
+
+
+    private boolean debug;
+
+    public void setDebug(boolean debug) {
+        this.debug = debug;
+    }
+    boolean isDebug() {
+        return debug;
+    }
+    public void toggleDebug() {
+        this.setDebug(!isDebug());
+    }
+
     /**
      * Service pour modifier la question et générer la réponse.
-     */
     @Inject
     private Modificateur modificateur;
+    */
 
     /**
      * Contexte JSF. Utilisé pour qu'un message d'erreur s'affiche dans le formulaire.
@@ -69,6 +87,23 @@ public class Bb implements Serializable {
     public Bb() {
     }
 
+
+
+    public String getTexteRequeteJson() {
+        return texteRequeteJson;
+    }
+
+    public void setTexteRequeteJson(String texteRequeteJson) {
+        this.texteRequeteJson = texteRequeteJson;
+    }
+
+    public String getTexteReponseJson() {
+        return texteReponseJson;
+    }
+
+    public void setTexteReponseJson(String texteReponseJson) {
+        this.texteReponseJson = texteReponseJson;
+    }
     public String getRoleSysteme() {
         return roleSysteme;
     }
@@ -134,7 +169,7 @@ public class Bb implements Serializable {
             // Invalide la liste pour changer le rôle système
             this.roleSystemeChangeable = false;
         }
-        this.reponse += this.modificateur.modifier(this.question, roleSystemePourModification);
+        // this.reponse += this.modificateur.modifier(this.question, roleSystemePourModification);
 
         // La conversation contient l'historique des questions-réponses depuis le début.
         afficherConversation();
