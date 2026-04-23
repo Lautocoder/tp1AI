@@ -1,6 +1,8 @@
 package ht.mbds.lafleur.tp1lafleur.jsf;
 
 // import ht.mbds.lafleur.tp1lafleur.service.Modificateur;
+import ht.mbds.lafleur.tp1lafleur.llm.JsonAdapterPourGemini;
+import ht.mbds.lafleur.tp1lafleur.llm.LlmInteraction;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.model.SelectItem;
@@ -10,6 +12,7 @@ import jakarta.inject.Named;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -58,6 +61,9 @@ public class Bb implements Serializable {
 
 
     private boolean debug;
+
+    @Inject
+    private JsonAdapterPourGemini jsonAdapter;
 
     public void setDebug(boolean debug) {
         this.debug = debug;
@@ -170,6 +176,18 @@ public class Bb implements Serializable {
             this.roleSystemeChangeable = false;
         }
         // this.reponse += this.modificateur.modifier(this.question, roleSystemePourModification);
+        try {
+            LlmInteraction interaction = jsonAdapter.envoyerRequete(question);
+            this.reponse = interaction.reponseExtraite();
+            this.texteRequeteJson = interaction.questionJson();
+            this.texteReponseJson = interaction.reponseJson();
+        } catch (Exception e) {
+            FacesMessage message =
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Problème de connexion avec l'API du LLM",
+                            "Problème de connexion avec l'API du LLM" + e.getMessage() + "\n" + Arrays.toString(e.getStackTrace()));
+            facesContext.addMessage(null, message);
+        }
 
         // La conversation contient l'historique des questions-réponses depuis le début.
         afficherConversation();
