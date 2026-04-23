@@ -68,7 +68,7 @@ public class Bb implements Serializable {
     public void setDebug(boolean debug) {
         this.debug = debug;
     }
-    boolean isDebug() {
+    public boolean isDebug() {
         return debug;
     }
     public void toggleDebug() {

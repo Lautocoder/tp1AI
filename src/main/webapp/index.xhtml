@@ -55,7 +55,7 @@
                                          cols="50" rows="15"/>
                     </h:panelGrid>
 
-                    <h:commandButton id="debugbutton" value="#{bb.debug?'Mode Normal':'Mode Debug'}"
+                    <h:commandButton id="debugbutton" value="#{bb.debug ? 'Mode Normal' : 'Mode Debug'}"
                                      action="#{bb.toggleDebug()}"/>
 
                     <h:panelGrid id="paneldebug" columns="1" rendered="#{bb.debug}">
