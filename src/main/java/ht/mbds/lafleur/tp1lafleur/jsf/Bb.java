@@ -171,7 +171,8 @@ public class Bb implements Serializable {
         // Traite la question pour construire la réponse.
         String roleSystemePourModification = null;
         if (this.conversation.isEmpty()) { // Si la conversation n'a pas encore commencé
-            roleSystemePourModification = this.roleSysteme; // Pour Modificateur.modifier()
+            //roleSystemePourModification = this.roleSysteme; // Pour Modificateur.modifier()
+            jsonAdapter.setSystemRole(this.roleSysteme);
             // Invalide la liste pour changer le rôle système
             this.roleSystemeChangeable = false;
         }

@@ -26,7 +26,8 @@ public class LlmClientPourGemini implements Serializable {
     // Représente un endpoint de serveur REST
     private final WebTarget target;
 
-    private static final String URL_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
+    //private static final String URL_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
+    private static final String URL_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent";
 
     public LlmClientPourGemini() {
         // Récupère la clé secrète pour travailler avec l'API du LLM, mise dans une variable d'environnement
