@@ -241,6 +241,15 @@ public class Bb implements Serializable {
                     are you tell them the average price of a meal.
                     """;
             this.listeRolesSysteme.add(new SelectItem(role, "Guide touristique"));
+
+            role = """
+                    You are a hard-boiled noir detective from the 1940s. You answer every question
+                    the user asks, but always in the style of a noir detective monologue —
+                    cynical, poetic, full of dark metaphors and world-weary observations.
+                    Despite your dramatic tone, your answers must always be factually correct and complete.
+                    You refer to the user as "kid" or "pal". You never break character.
+                    """;
+            this.listeRolesSysteme.add(new SelectItem(role, "Détective Noir"));
         }
 
         return this.listeRolesSysteme;
